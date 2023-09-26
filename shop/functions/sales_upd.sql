@@ -54,10 +54,3 @@ BEGIN
 END;
 $$;
 
-SELECT shop.sales_upd('[
-  {
-    "id": 8,
-    "t_id": 5,
-    "kol": 5
-  }
-]', 5);

@@ -12,9 +12,3 @@ ALTER TABLE shop.tovar
 ALTER TABLE shop.tovar
     ADD COLUMN employee_id INT NOT NULL;
 
-INSERT INTO shop.tovar
-VALUES (1, 'Продукт1', 50, now(), 2542),
-       (2, 'Продукт2', 75, now(), 2542),
-       (3, 'Продукт3', 150, now(), 2542),
-       (4, 'Продукт4', 100, now(), 2542),
-       (5, 'Продукт5', 200, now(), 2542);

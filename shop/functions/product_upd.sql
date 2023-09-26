@@ -61,4 +61,3 @@ SELECT shop.product_upd('[
   }
 ]', 2542);
 
-select * from shop.tovar

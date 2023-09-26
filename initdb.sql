@@ -1,0 +1,3 @@
+CREATE SCHEMA shop;
+CREATE SCHEMA history;
+CREATE SCHEMA public;

@@ -1,1 +1,1 @@
-create sequence prodseq;
+create sequence shop.prodseq;

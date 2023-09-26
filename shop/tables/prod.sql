@@ -1,4 +1,4 @@
-CREATE TABLE Prod
+CREATE TABLE shop.prod
 (
     ID    INT       not null,
     Dt    timestamp not null,

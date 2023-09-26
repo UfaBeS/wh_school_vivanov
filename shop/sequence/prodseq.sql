@@ -1,1 +1,1 @@
-create sequence shop.prodseq;
+create sequence IF NOT EXISTS shop.prodseq;

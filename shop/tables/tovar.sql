@@ -1,4 +1,4 @@
-CREATE TABLE shop.tovar
+CREATE TABLE IF NOT EXISTS shop.tovar
 (
     id          INT            NOT NULL,
     naz         VARCHAR(30)    NOT NULL,

@@ -1,4 +1,4 @@
-CREATE TABLE history.orders
+CREATE TABLE IF NOT EXISTS history.orders
 (
     log_id     BIGSERIAL   NOT NULL
         CONSTRAINT pk_log_id PRIMARY KEY,

@@ -1,9 +1,8 @@
-CREATE TABLE order.queue
+CREATE TABLE IF NOT EXISTS order.queue
 (
-    order_id   BIGINT      NOT NULL
-        CONSTRAINT pk_order_id PRIMARY KEY,
-    order_date DATE        NOT NULL,
-    service_id INT         NOT NULL,
-    status     VARCHAR(20) NOT NULL,
-    queue_num  INT         NOT NULL
+    order_id      BIGINT      NOT NULL,
+    repair_status VARCHAR(20) NOT NULL,
+    appointment   DATE        NOT NULL,
+    employee_id   BIGINT      NOT NULL,
+    work_time     DATE        NOT NULL
 );

@@ -7,6 +7,5 @@ CREATE TABLE IF NOT EXISTS order.orders
     vehicle_id    INT         NOT NULL,
     repair_status VARCHAR(20) NOT NULL,
     appointment   DATE        NOT NULL,
-    detail_repair BOOLEAN     NOT NULL,
-    detail_id     BIGINT
+    is_actual     BOOLEAN
 );

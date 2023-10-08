@@ -1,0 +1,1 @@
+CREATE SEQUENCE IF NOT EXISTS humanresource.humanresourcesq AS BIGINT START WITH 1;

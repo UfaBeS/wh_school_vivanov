@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS customer.customers
         CONSTRAINT pk_customer_id PRIMARY KEY,
     name        VARCHAR(50) NOT NULL,
     phone       VARCHAR(15),
-    vehicle_id  INT         NOT NULL
+    vehicle_id  INT         NOT NULL,
+    CONSTRAINT uq_customer_vehicle UNIQUE (customer_id, vehicle_id)
 );

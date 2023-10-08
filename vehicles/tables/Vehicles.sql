@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS vehicle.vehicles
+CREATE TABLE IF NOT EXISTS vehicles.vehicles
 (
     vehicle_id BIGINT             NOT NULL
         CONSTRAINT pk_vehicles PRIMARY KEY,

@@ -8,39 +8,26 @@ DECLARE
     _name        VARCHAR(30);
     _phone       VARCHAR(11);
     _vehicle_id  INT;
-    _is_deleted  BOOLEAN;
 BEGIN
     SET TIME ZONE 'Europe/Moscow';
 
     SELECT coalesce(s.customer_id, nextval('customer.customersq')) AS customer_id,
            s.name,
            s.phone,
-           s.vehicle_id,
-           s.is_deleted
-    INTO _customer_id, _name, _phone, _vehicle_id, _is_deleted
+           s.vehicle_id
+    INTO _customer_id, _name, _phone, _vehicle_id
     FROM jsonb_to_record(_src) AS s (customer_id INT,
                                      name VARCHAR(30),
                                      phone VARCHAR(11),
-                                     vehicle_id INT,
-                                     is_deleted boolean);
-    IF _is_deleted = TRUE
-    THEN
-        DELETE
-        FROM customer.customers c
-        WHERE c.customer_id = _customer_id
-          AND c.vehicle_id = _vehicle_id
-          AND _is_deleted = TRUE;
-
-        RETURN jsonb_build_object('data', NULL);
-    END IF;
+                                     vehicle_id INT);
 
     IF exists(SELECT 1
               FROM customer.customers c
-              WHERE c.customer_id = _customer_id
-                AND c.vehicle_id = _vehicle_id)
+              WHERE c.name = _name
+                AND c.phone = _phone)
     THEN
         RETURN public.errmessage(_errcode := 'customer.customers_customer_alredy_registred',
-                                 _msg := 'Покупатель уже зарегестрирован!',
+                                 _msg := 'Покупатель с данными номером уже зарегестрирован!',
                                  _detail := concat('customer = ', _customer_id, ' ', 'vehicle =', _vehicle_id));
     END IF;
 

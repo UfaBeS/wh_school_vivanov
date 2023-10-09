@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS service.servicedetails
+CREATE TABLE IF NOT EXISTS dictionary.servicedetails
 (
     service_id BIGINT NOT NULL,
     type_car   INT    NOT NULL,

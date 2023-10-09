@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS service.services
+CREATE TABLE IF NOT EXISTS autoservice.services
 (
     service_id   BIGINT         NOT NULL,
     service_name VARCHAR(500)   NOT NULL,

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS humanresource.specialization
+CREATE TABLE IF NOT EXISTS dictionary.specialization
 (
     employee_id BIGINT      NOT NULL
         CONSTRAINT pk_employees PRIMARY KEY,

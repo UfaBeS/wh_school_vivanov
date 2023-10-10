@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS dictionary.specialization
 (
-    employee_id BIGINT      NOT NULL
-        CONSTRAINT pk_employees PRIMARY KEY,
-    service_id  BIGINT      NOT NULL,
-    skill_lvl   VARCHAR(64) NOT NULL
+    specialization_id   INT         NOT NULL
+        CONSTRAINT pk_specialization_id PRIMARY KEY,
+    specialization_name VARCHAR(64) NOT NULL,
+    service_id          INT         NOT NULL,
+    skill_lvl           VARCHAR(6)  NOT NULL
 );

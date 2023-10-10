@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS customer.vehicles
     model      VARCHAR(50)        NOT NULL,
     year       INT,
     type_car   VARCHAR(16)        NOT NULL,
-    car_vin    VARCHAR(17) UNIQUE NOT NULL,
-    problem    VARCHAR(500)
+    car_vin    VARCHAR(17) UNIQUE NOT NULL
 );

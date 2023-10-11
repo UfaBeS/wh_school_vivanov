@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS dictionary.prices
+CREATE TABLE IF NOT EXISTS autoservice.prices
 (
     service_id   INT         NOT NULL,
     service_name VARCHAR(500)   NOT NULL,

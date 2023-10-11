@@ -1,10 +1,11 @@
 CREATE TABLE IF NOT EXISTS customer.vehicles
 (
-    vehicle_id BIGINT             NOT NULL
+    vehicle_id BIGINT      NOT NULL
         CONSTRAINT pk_vehicles PRIMARY KEY,
-    make       VARCHAR(50)        NOT NULL,
-    model      VARCHAR(50)        NOT NULL,
+    brand_id   SMALLINT    NOT NULL,
+    model      VARCHAR(50) NOT NULL,
     year       INT,
-    type_car   VARCHAR(16)        NOT NULL,
-    car_vin    VARCHAR(17) UNIQUE NOT NULL
+    type_car   VARCHAR(16) NOT NULL,
+    car_vin    VARCHAR(17) NOT NULL
+        CONSTRAINT uq_vin UNIQUE
 );

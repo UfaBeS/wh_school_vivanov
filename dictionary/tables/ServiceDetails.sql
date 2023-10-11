@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS dictionary.servicedetails
 (
-    service_id INT NOT NULL,
-    type_car   INT NOT NULL,
-        CONSTRAINT uq_service_type_car UNIQUE (service_id, type_car),
-    detail_id  BIGINT
+    service_id SERIAL NOT NULL,
+    type_car   INT    NOT NULL,
+    detail_id  BIGINT NOT NULL
+    CONSTRAINT uq_type_detail UNIQUE
 );

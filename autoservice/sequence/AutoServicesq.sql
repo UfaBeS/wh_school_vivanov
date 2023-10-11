@@ -1,0 +1,1 @@
+CREATE SEQUENCE IF NOT EXISTS autoservice.autoservicesq AS BIGINT START WITH 1;

@@ -1,7 +1,7 @@
-CREATE TABLE IF NOT EXISTS storage.stock
+CREATE TABLE IF NOT EXISTS autoservice.stock
 (
     stock_id  BIGINT NOT NULL
-        CONSTRAINT pk_service_id PRIMARY KEY,
+        CONSTRAINT pk_stock PRIMARY KEY,
     detail_id BIGINT NOT NULL,
     quantity  BIGINT NOT NULL
 );

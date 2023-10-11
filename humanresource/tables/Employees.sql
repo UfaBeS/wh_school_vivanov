@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS humanresource.employees
     specialization_id INT         NOT NULL,
     is_active         BOOLEAN     NOT NULL,
     ch_employee_id    INT         NOT NULL,
-    ch_dt             timestamptz NOT NULL
+    ch_dt             TIMESTAMPTZ NOT NULL
 );

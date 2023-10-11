@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS customer.vehicles
     year       INT,
     type_car   VARCHAR(16) NOT NULL,
     vin        VARCHAR(17) NOT NULL
-        CONSTRAINT uq_vin UNIQUE
+        CONSTRAINT uq_vehicles_vin UNIQUE
 );

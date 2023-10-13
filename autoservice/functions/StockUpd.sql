@@ -26,9 +26,8 @@ BEGIN
     SELECT _stock_id,
            _detail_id,
            _quantity
-    ON CONFLICT (stock_id) DO UPDATE
-        SET detail_id = excluded.detail_id,
-            quantity  = s.quantity + excluded.quantity;
+    ON CONFLICT (stock_id, detail_id) DO UPDATE
+        SET quantity = s.quantity + excluded.quantity;
 
     RETURN jsonb_build_object('data', NULL);
 END

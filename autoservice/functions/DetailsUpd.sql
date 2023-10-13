@@ -41,9 +41,9 @@ BEGIN
            _brand_id,
            _model
     ON CONFLICT (detail_id) DO UPDATE
-        SET detail_name       = excluded.detail_name,
-            brand_id      = excluded.brand_id,
-            model = excluded.model;
+        SET detail_name = excluded.detail_name,
+            brand_id    = excluded.brand_id,
+            model       = excluded.model;
 
 
 /*    INSERT INTO history.customerschanges (customer_id,

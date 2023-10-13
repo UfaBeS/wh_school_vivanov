@@ -17,7 +17,8 @@ BEGIN
     IF _quantity <= 0
     THEN
         RETURN public.errmessage(_errcode := 'autoservice.stock_invalid_quantity',
-                                 _msg := 'Количество деталей должно быть больше 0.');
+                                 _msg := 'Количество деталей должно быть больше 0.',
+                                _detail := concat('detail_id = ', _detail_id));
     END IF;
 
     INSERT INTO autoservice.stock AS s (stock_id,

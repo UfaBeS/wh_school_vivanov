@@ -24,28 +24,35 @@ BEGIN
                                      phone VARCHAR(11),
                                      vehicle_id INT);
 
-CASE
-    WHEN exists(SELECT 1
-              FROM customer.customers c
-                       INNER JOIN customer.vehicles v on c.vehicle_id = v.vehicle_id
-              WHERE c.name = _name
-                AND c.phone = _phone
-                AND c.vehicle_id = _vehicle_id)
-    THEN
-        RETURN public.errmessage(_errcode := 'customer.customers_customer_alredy_registred',
-                                 _msg := 'Данный клиент уже зарегестрирован!',
-                                 _detail := concat('customer = ', _customer_id, ' ', 'vehicle =', _vehicle_id));
+    CASE
+        WHEN exists(SELECT 1
+                    FROM customer.customers c
+                             INNER JOIN customer.vehicles v on c.vehicle_id = v.vehicle_id
+                    WHERE c.name = _name
+                      AND c.phone = _phone
+                      AND c.vehicle_id = _vehicle_id)
+            THEN RETURN public.errmessage(_errcode := 'customer.customers_customer_alredy_registred',
+                                          _msg := 'Данный клиент уже зарегестрирован!',
+                                          _detail := concat('customer = ', _customer_id, ' ', 'vehicle =', _vehicle_id));
 
-    WHEN exists(SELECT 1
-              FROM customer.customers c
-                       INNER JOIN customer.vehicles v on c.vehicle_id = v.vehicle_id
-              WHERE v.vehicle_id = _vehicle_id
-                AND c.customer_id != _customer_id)
-    THEN
-        RETURN public.errmessage(_errcode := 'customer.customers_customer_alredy_registred',
-                                 _msg := 'Машина принадлежит другому владельцу!',
-                                 _detail := concat('customer = ', _customer_id, ' ', 'vehicle =', _vehicle_id));
-    END CASE;
+        WHEN exists(SELECT 1
+                    FROM customer.customers c
+                             INNER JOIN customer.vehicles v on c.vehicle_id = v.vehicle_id
+                    WHERE v.vehicle_id = _vehicle_id
+                      AND c.customer_id != _customer_id)
+            THEN RETURN public.errmessage(_errcode := 'customer.customers_vehicle_not_your',
+                                          _msg := 'Машина принадлежит другому владельцу!',
+                                          _detail := concat('customer = ', _customer_id, ' ', 'vehicle =', _vehicle_id));
+
+        WHEN exists(SELECT 1
+                    FROM customer.customers c
+                             INNER JOIN customer.vehicles v on c.vehicle_id = v.vehicle_id
+                    WHERE v.vehicle_id != _vehicle_id)
+            THEN RETURN public.errmessage(_errcode := 'customer.customers_vehicle_not_exists',
+                                          _msg := 'Машина не зарегистрирована!',
+                                          _detail := concat('customer = ', _customer_id, ' ', 'vehicle =', _vehicle_id));
+        ELSE
+        END CASE;
 
 
     INSERT INTO customer.customers AS c (customer_id,

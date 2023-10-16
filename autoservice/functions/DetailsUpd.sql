@@ -45,17 +45,6 @@ BEGIN
             brand_id    = excluded.brand_id,
             model       = excluded.model;
 
-
-/*    INSERT INTO history.customerschanges (customer_id,
-                                          name,
-                                          phone,
-                                          vehicle_id)
-    SELECT _customer_id,
-           _name,
-           _phone,
-           _vehicle_id;*/
-
-
     RETURN jsonb_build_object('data', NULL);
 END
 $$;

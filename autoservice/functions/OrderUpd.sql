@@ -33,7 +33,11 @@ BEGIN
                                      is_actual BOOLEAN);
     IF EXISTS (SELECT 1
                FROM autoservice.orders o
-               WHERE o.appointment = _appointment
+                        INNER JOIN autoservice.prices p on o.service_id = p.service_id
+               WHERE _appointment BETWEEN (o.appointment) AND
+                   (o.appointment + INTERVAL '1 hour' * p.work_time + INTERVAL '1 day' * ((p.work_time / 24)::INT))
+                 OR _appointment BETWEEN (o.appointment) AND
+                   (o.appointment - INTERVAL '1 hour' * p.work_time - INTERVAL '1 day' * ((p.work_time / 24)::INT))
                  AND o.is_actual = TRUE)
     THEN
         RAISE EXCEPTION 'Время % уже занято', _appointment;
@@ -56,8 +60,7 @@ BEGIN
            _problem,
            _is_actual
     ON CONFLICT (order_id) DO UPDATE
-        SET order_date  = excluded.order_date,
-            service_id  = excluded.service_id,
+        SET service_id  = excluded.service_id,
             vehicle_id  = excluded.vehicle_id,
             status      = excluded.status,
             appointment = excluded.appointment,

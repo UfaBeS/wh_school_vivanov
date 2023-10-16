@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS history.serviceschanges
+CREATE TABLE IF NOT EXISTS history.priceschanges
 (
     log_id       BIGSERIAL    NOT NULL
         CONSTRAINT pk_serviceschanges PRIMARY KEY,

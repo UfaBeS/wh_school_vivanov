@@ -50,6 +50,18 @@ BEGIN
             price        = excluded.price,
             work_time    = excluded.work_time;
 
+    INSERT INTO history.priceschanges (service_id,
+                                       service_name,
+                                       price,
+                                       work_time,
+                                       type_car)
+    SELECT _service_id,
+           _service_name,
+           _price,
+           _work_time,
+           _type_car;
+
+
     RETURN jsonb_build_object('data', NULL);
 END
 $$;

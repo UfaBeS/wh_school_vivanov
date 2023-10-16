@@ -12,7 +12,7 @@ DECLARE
 BEGIN
     SET TIME ZONE 'Europe/Moscow';
 
-    SELECT coalesce(s.employee_task_id, nextval('customer.customersq')) AS employee_task_id,
+    SELECT coalesce(s.employee_task_id, nextval('autoservice.autoservicesq')) AS employee_task_id,
            s.repair_status,
            s.responsible_employee_id
     INTO _employee_task_id, _repair_status, _responsible_employee_id
@@ -22,7 +22,8 @@ BEGIN
 
     IF exists(SELECT 1
               FROM autoservice.employeetasks c
-              WHERE c.responsible_employee_id = _responsible_employee_id)
+              WHERE c.responsible_employee_id = _responsible_employee_id
+                AND c.employee_task_id = _employee_task_id)
     THEN
         RETURN public.errmessage(_errcode := 'autoservice.employeetasks_responsible_employee_id_alredy_registred',
                                  _msg := 'Данный сотрудник уже назначен на эту задачу!',
@@ -45,18 +46,6 @@ BEGIN
         SET repair_status           = excluded.repair_status,
             responsible_employee_id = excluded.responsible_employee_id;
 
-/*    INSERT INTO history.vehiclechanges (vehicle_id,
-                                        brand_id,
-                                        model,
-                                        year,
-                                        type_car,
-                                        vin)
-    SELECT _vehicle_id,
-           _brand_id,
-           _model,
-           _year,
-           _type_car,
-           _vin;*/
 
     RETURN jsonb_build_object('data', NULL);
 END

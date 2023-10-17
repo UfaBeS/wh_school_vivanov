@@ -10,8 +10,6 @@ DECLARE
     _work_time    NUMERIC(4, 2);
     _type_car     INT;
 BEGIN
-    SET TIME ZONE 'Europe/Moscow';
-
     SELECT coalesce(s.service_id, nextval('autoservice.autoservicesq')) AS service_id,
            s.service_name,
            s.price,
@@ -23,17 +21,6 @@ BEGIN
                                      price NUMERIC(10, 2),
                                      work_time NUMERIC(4, 2),
                                      type_car INT);
-
-    IF exists(SELECT 1
-              FROM autoservice.prices c
-              WHERE c.service_name = _service_name
-                AND c.type_car = _type_car)
-    THEN
-        RETURN public.errmessage(_errcode := 'autoservice.prices_service_id_type_car_already_registered',
-                                 _msg := 'Услуга для этого типа автомобиля уже зарегистрирована!',
-                                 _detail := concat('service_id = ', _service_id, ' ',
-                                                   'type_car = ', _type_car));
-    END IF;
 
     INSERT INTO autoservice.prices (service_id,
                                     service_name,

@@ -13,10 +13,7 @@ DECLARE
     _problem     VARCHAR(500);
     _is_actual   BOOLEAN;
 BEGIN
-    SET TIME ZONE 'Europe/Moscow';
-
     SELECT coalesce(s.order_id, nextval('autoservice.autoservicesq')) AS order_id,
-
            s.service_id,
            s.vehicle_id,
            s.status,
@@ -35,12 +32,15 @@ BEGIN
                FROM autoservice.orders o
                         INNER JOIN autoservice.prices p on o.service_id = p.service_id
                WHERE _appointment BETWEEN (o.appointment) AND
-                   (o.appointment + INTERVAL '1 hour' * p.work_time + INTERVAL '1 day' * ((p.work_time / 24)::INT))
-                 OR _appointment BETWEEN (o.appointment) AND
-                   (o.appointment - INTERVAL '1 hour' * p.work_time - INTERVAL '1 day' * ((p.work_time / 24)::INT))
-                 AND o.is_actual = TRUE)
+                   (o.appointment + INTERVAL '1 hour' * p.work_time)
+                  OR _appointment BETWEEN (o.appointment) AND
+                         (o.appointment - INTERVAL '1 hour' * p.work_time)
+                   AND o.is_actual = TRUE
+                   AND o.status != 'rdy')
     THEN
-        RAISE EXCEPTION 'Время % уже занято', _appointment;
+        RETURN public.errmessage(_errcode := 'autoservice.order_time_is_busy',
+                                 _msg := 'Данное время уже занято!',
+                                 _detail := concat('order_id = ', _order_id, ' ', 'appointment = ', _appointment));
     END IF;
 
     INSERT INTO autoservice.orders (order_id,

@@ -9,8 +9,6 @@ DECLARE
     _brand_id    SMALLINT;
     _model       VARCHAR(50);
 BEGIN
-    SET TIME ZONE 'Europe/Moscow';
-
     SELECT coalesce(s.detail_id, nextval('autoservice.autoservicesq')) AS detail_id,
            s.detail_name,
            s.brand_id,
@@ -21,17 +19,6 @@ BEGIN
                                      brand_id SMALLINT,
                                      model VARCHAR(50));
 
-    IF exists(SELECT 1
-              FROM autoservice.details c
-              WHERE c.detail_name = _detail_name
-                AND c.brand_id = _brand_id
-                AND c.model = _model)
-    THEN
-        RETURN public.errmessage(_errcode := 'autoservice.detail_detail_alredy_registred',
-                                 _msg := 'Такая деталь уже зарегестрирована!',
-                                 _detail := concat('detail_id = ', _detail_id, ' ', 'detail_name = ', _detail_name));
-
-    END IF;
     INSERT INTO autoservice.details AS c(detail_id,
                                          detail_name,
                                          brand_id,

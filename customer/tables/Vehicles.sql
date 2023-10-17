@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS customer.vehicles
     brand_id    SMALLINT    NOT NULL,
     model       VARCHAR(50) NOT NULL,
     year        INT,
-    type_car_id VARCHAR(16) NOT NULL,
+    type_car_id SMALLINT    NOT NULL,
     vin         VARCHAR(17) NOT NULL
         CONSTRAINT uq_vehicles_vin UNIQUE
 );

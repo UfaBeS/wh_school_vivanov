@@ -1,1 +1,0 @@
-create sequence IF NOT EXISTS shop.prodseq;

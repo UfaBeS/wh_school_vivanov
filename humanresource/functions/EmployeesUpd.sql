@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION humanresource.employeeupd(_src JSONB, _ch_employee_id INT) RETURNS JSONB
+CREATE OR REPLACE FUNCTION humanresource.employeesupd(_src JSONB, _ch_employee_id INT) RETURNS JSONB
     SECURITY DEFINER
     LANGUAGE plpgsql
 AS
@@ -12,7 +12,7 @@ DECLARE
     _is_active         BOOLEAN;
     _ch_dt             TIMESTAMPTZ := now() AT TIME ZONE 'Europe/Moscow';
 BEGIN
-    SELECT coalesce(s.employee_id, nextval('customer.customersq')) AS employee_id,
+    SELECT coalesce(s.employee_id, nextval('humanresource.humanresourcesq')) AS employee_id,
            s.phone,
            s.name,
            s.birth_date,
@@ -49,7 +49,7 @@ BEGIN
             specialization_id = excluded.specialization_id,
             is_active         = excluded.is_active;
 
-    INSERT INTO history.employeechanges (employee_id,
+    INSERT INTO history.employeeschanges (employee_id,
                                          phone,
                                          name,
                                          birth_date,

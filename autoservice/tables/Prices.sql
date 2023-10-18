@@ -7,3 +7,4 @@ CREATE TABLE IF NOT EXISTS autoservice.prices
     type_car_id  SMALLINT       NOT NULL,
     CONSTRAINT pk_autoservice_service_id_type_car_id PRIMARY KEY (service_id, type_car_id)
 );
+

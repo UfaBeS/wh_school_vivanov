@@ -10,7 +10,7 @@ DECLARE
     _vehicle_id  INT;
     _ch_dt       TIMESTAMPTZ := now() AT TIME ZONE 'Europe/Moscow';
 BEGIN
-    SELECT coalesce(s.customer_id, nextval('customer.customersq')) AS customer_id,
+    SELECT coalesce(s.customer_id, nextval('customer.customerssq')) AS customer_id,
            s.name,
            s.phone,
            s.vehicle_id

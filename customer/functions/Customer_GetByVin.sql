@@ -17,7 +17,6 @@ FROM customer.vehicles v
          LEFT JOIN customer.customers c on c.vehicle_id = v.vehicle_id
          INNER JOIN dictionary.vehiclebrands vb ON v.brand_id = vb.brand_id
          INNER JOIN dictionary.typescar tc ON v.type_car_id = tc.type_car_id
-WHERE v.vin = _vin)
- res;
+WHERE v.vin = _vin) res;
 END
 $$;

@@ -43,6 +43,12 @@ BEGIN
                                  _detail := concat('order_id = ', _order_id, ' ', 'appointment = ', _appointment));
     END IF;
 
+    UPDATE autoservice.stock
+    SET quantity = quantity - 1
+    WHERE detail_id IN (SELECT detail_id FROM dictionary.servicedetails WHERE service_id = _service_id)
+      AND _status = 'prg'
+      AND _is_actual = TRUE;
+
     INSERT INTO autoservice.orders (order_id,
                                     order_date,
                                     service_id,

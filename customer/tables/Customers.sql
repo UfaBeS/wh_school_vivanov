@@ -8,3 +8,5 @@ CREATE TABLE IF NOT EXISTS customer.customers
     ch_employee_id INT         NOT NULL,
     ch_dt          timestamptz NOT NULL
 );
+
+

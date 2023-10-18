@@ -48,7 +48,6 @@ BEGIN
            _work_time,
            _type_car_id;
 
-
     RETURN jsonb_build_object('data', NULL);
 END
 $$;

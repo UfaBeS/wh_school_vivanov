@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION dictionary.specilizationupd(_src JSONB) RETURNS JSONB
+CREATE OR REPLACE FUNCTION dictionary.specializationupd(_src JSONB) RETURNS JSONB
     SECURITY DEFINER
     LANGUAGE plpgsql
 AS

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION dictionary.servicedetailsupd(_src JSONB,_service_id INT) RETURNS JSONB --
+CREATE OR REPLACE FUNCTION dictionary.servicedetailsupd(_src JSONB,_service_id INT) RETURNS JSONB
     SECURITY DEFINER
     LANGUAGE plpgsql
 AS

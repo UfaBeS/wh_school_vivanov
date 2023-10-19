@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS humanresource.employees
 (
     employee_id       INT         NOT NULL
         CONSTRAINT pk_employees PRIMARY KEY,
-    phone             VARCHAR(11) NOT NULL, -- по brand_id и по модели найти делать, поиск по статусам и на кого начислена задача
+    phone             VARCHAR(11) NOT NULL,
     name              VARCHAR(64) NOT NULL,
     birth_date        DATE        NOT NULL,
     specialization_id INT         NOT NULL,

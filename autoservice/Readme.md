@@ -88,7 +88,6 @@ SELECT autoservice.detailsupd('
     - `status` (тип: CHAR(3), NOT NULL) - Статус заказа.
     -
         * `status` ("new") заказ принят.
-
     *
         * `status` ("prg") заказ принят.
     *

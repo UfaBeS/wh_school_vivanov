@@ -1,19 +1,16 @@
-CREATE OR REPLACE FUNCTION dictionary.servicedetailsupd(_src JSONB) RETURNS JSONB
+CREATE OR REPLACE FUNCTION dictionary.servicedetailsupd(_src JSONB,_service_id INT) RETURNS JSONB --
     SECURITY DEFINER
     LANGUAGE plpgsql
 AS
 $$
 DECLARE
-    _service_id  INT;
     _type_car_id SMALLINT;
     _detail_id   BIGINT;
 BEGIN
-    SELECT s.service_id,
-           s.type_car_id,
+    SELECT s.type_car_id,
            s.detail_id
-    INTO _service_id, _type_car_id, _detail_id
-    FROM jsonb_to_record(_src) AS s (service_id INT,
-                                     type_car_id SMALLINT,
+    INTO _type_car_id, _detail_id
+    FROM jsonb_to_record(_src) AS s (type_car_id SMALLINT,
                                      detail_id BIGINT);
 
     INSERT INTO dictionary.servicedetails AS s (service_id,

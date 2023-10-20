@@ -44,9 +44,11 @@ BEGIN
            _ch_employee_id,
            _ch_dt
     ON CONFLICT (customer_id,vehicle_id) DO UPDATE
-        SET name       = excluded.name,
-            phone      = excluded.phone,
-            vehicle_id = excluded.vehicle_id;
+        SET name           = excluded.name,
+            phone          = excluded.phone,
+            vehicle_id     = excluded.vehicle_id,
+            ch_employee_id = excluded.ch_employee_id,
+            ch_dt          = excluded.ch_dt;
 
     INSERT INTO history.customerschanges (customer_id,
                                           name,

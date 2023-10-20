@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS dictionary.servicedetails
 (
-    service_id  SERIAL   NOT NULL
+    service_id  INT      NOT NULL
         CONSTRAINT pk_servicedetails PRIMARY KEY,
     type_car_id SMALLINT NOT NULL,
     detail_id   BIGINT   NOT NULL,

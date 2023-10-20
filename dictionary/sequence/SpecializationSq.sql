@@ -1,0 +1,1 @@
+CREATE SEQUENCE IF NOT EXISTS dictionary.specializationsq AS BIGINT START WITH 1;

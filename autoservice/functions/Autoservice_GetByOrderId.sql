@@ -5,20 +5,18 @@ AS
 $$
 BEGIN
     RETURN jsonb_build_object('data', jsonb_agg(row_to_json(res)))
-        FROM (SELECT o.order_id     AS Айди_заказа,
-                     o.order_date   AS Время_заказа,
-                     o.service_id   AS Айди_услуги,
-                     p.service_name AS Название,
-                     o.vehicle_id   AS Айди_машины,
-                     c.name         AS Владелец,
-                     c.phone        AS Номер,
-                     v.model        AS Модель,
-                     v.vin          AS Vin,
-                     v.year         AS Год,
-                     o.status       AS Статус,
-                     o.appointment  AS Запись,
-                     o.problem      AS Проблема,
-                     o.is_actual    AS Актуальность
+        FROM (SELECT o.order_id,
+                     o.order_date,
+                     o.service_id,
+                     p.service_name,
+                     o.vehicle_id,
+                     c.name,
+                     c.phone,
+                     v.vin,
+                     o.status,
+                     o.appointment,
+                     o.problem,
+                     o.is_actual
               FROM autoservice.orders o
                        INNER JOIN autoservice.prices p ON o.service_id = p.service_id
                        INNER JOIN customer.vehicles v ON o.vehicle_id = v.vehicle_id

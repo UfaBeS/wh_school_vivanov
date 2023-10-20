@@ -158,7 +158,7 @@ SELECT dictionary.specializationupd('
 
 ### Структура таблицы
 
-1. `service_id` (тип: SERIAL, NOT NULL) - Уникальный идентификатор услуги. Первичный ключ таблицы.
+1. `service_id` (тип: INT, NOT NULL) - Уникальный идентификатор услуги. Первичный ключ таблицы.
 2. `type_car_id` (тип: SMALLINT, NOT NULL) - Идентификатор типа автомобиля, связанного с данной услугой.
 3. `detail_id` (тип: BIGINT, NOT NULL) - Идентификатор детали, связанной с услугой.
 4. Ограничение уникальности: `uq_servicedetails_type_car_detail_id` (type_car_id, detail_id).
@@ -205,4 +205,136 @@ SELECT dictionary.servicedetailsupd('
 
 ```jsonb
 {"data" : null}
+```
+
+## Функция `dictionary_getbyserviceid`
+
+Функция `dictionary_getbyserviceid` предназначена для получения информации о сервисе по его уникальному идентификатору (`service_id`).
+
+### Параметры функции
+
+- `_service_id` (тип: INT) - Уникальный идентификатор услуги.
+
+### Пример использования функции
+
+```sql
+SELECT dictionary.dictionary_getbyserviceid(1);
+```
+
+Пример ответа при правильном выполнении:
+
+```jsonb
+{
+  "data": [
+    {
+      "service_id": 1,
+      "type_car_id": 2,
+      "detail_id": 123,
+      "detail_name": "Фильтр масляный"
+    }
+  ]
+}
+```
+
+## Функция `dictionary_getbyspecializationid`
+
+Функция `dictionary_getbyspecializationid` предназначена для получения информации о специализации по ее уникальному идентификатору (`specialization_id`).
+
+### Параметры функции
+
+- `_specialization_id` (тип: INT) - Уникальный идентификатор специализации.
+
+### Пример использования функции
+
+```sql
+SELECT dictionary.dictionary_getbyspecializationid(1);
+```
+
+Пример ответа при правильном выполнении:
+
+```jsonb
+{
+  "data": [
+    {
+      "specialization_id": 1,
+      "specialization_name": "Механик",
+      "service_id": 5,
+      "skill_lvl": "Высокий",
+      "max_queue": 10
+    }
+  ]
+}
+```
+
+## Функция `dictionary_gettypescar`
+
+Функция `dictionary_gettypescar` предназначена для получения информации о типах автомобилей (моделях).
+
+### Параметры функции
+
+Отсутствуют.
+
+### Пример использования функции
+
+```sql
+SELECT dictionary.dictionary_gettypescar();
+```
+
+Пример ответа при правильном выполнении:
+
+```jsonb
+{
+  "data": [
+    {
+      "type_car_id": 1,
+      "name_type": "Седан"
+    },
+    {
+      "type_car_id": 2,
+      "name_type": "Внедорожник"
+    },
+    {
+      "type_car_id": 3,
+      "name_type": "Хэтчбек"
+    }
+  ]
+}
+```
+
+## Функция `dictionary_getvehiclebrands`
+
+Функция `dictionary_getvehiclebrands` предназначена для получения информации о брендах автомобилей.
+
+### Параметры функции
+
+Отсутствуют.
+
+### Пример использования функции
+
+```sql
+SELECT dictionary.dictionary_getvehiclebrands();
+```
+
+Пример ответа при правильном выполнении:
+
+```jsonb
+{
+  "data": [
+    {
+      "brand_id": 1,
+      "name": "Toyota",
+      "country": "Япония"
+    },
+    {
+      "brand_id": 2,
+      "name": "Ford",
+      "country": "США"
+    },
+    {
+      "brand_id": 3,
+      "name": "Volkswagen",
+      "country": "Германия"
+    }
+  ]
+}
 ```

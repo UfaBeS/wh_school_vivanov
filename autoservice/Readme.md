@@ -219,10 +219,11 @@ SELECT autoservice.pricesupd('
 ### Структура таблицы
 
 1. `employee_task_id` (тип: BIGINT, NOT NULL) - Уникальный идентификатор задачи для сотрудника. Первичный ключ таблицы.
-2. `repair_status` (тип: VARCHAR(20), NOT NULL) - Статус задачи по ремонту.
-3. `responsible_employee_id` (тип: INT, NOT NULL) - Идентификатор сотрудника, ответственного за выполнение задачи.
-4. `ch_employee_id` (тип: INT, NOT NULL) - Идентификатор сотрудника, изменившего статус задачи.
-5. `ch_dt` (тип: TIMESTAMPTZ, NOT NULL) - Дата и время изменения статуса задачи.
+2. `vehicle_id` (тип: BIGINT, NOT NULL) - Идентификатор автомобиля, к которому относится заказ.
+3. `repair_status` (тип: VARCHAR(20), NOT NULL) - Статус задачи по ремонту.
+4. `responsible_employee_id` (тип: INT, NOT NULL) - Идентификатор сотрудника, ответственного за выполнение задачи.
+5. `ch_employee_id` (тип: INT, NOT NULL) - Идентификатор сотрудника, изменившего статус задачи.
+6. `ch_dt` (тип: TIMESTAMPTZ, NOT NULL) - Дата и время изменения статуса задачи.
 
 ## Функция `employeetasksupd`
 
@@ -232,6 +233,7 @@ SELECT autoservice.pricesupd('
 
 - `_src` (тип: JSONB) - JSON-объект, содержащий информацию о задаче сотрудника. Может включать следующие поля:
     - `employee_task_id` (тип: BIGINT) - Уникальный идентификатор задачи. Если не указан, то будет создан новый.
+    - `vehicle_id` (тип: BIGINT, NOT NULL) - Идентификатор автомобиля.
     - `repair_status` (тип: VARCHAR(20), NOT NULL) - Статус задачи по ремонту.
     - `responsible_employee_id` (тип: INT, NOT NULL) - Идентификатор сотрудника, ответственного за выполнение задачи.
 - `_ch_employee_id` (тип: INT) - Идентификатор сотрудника, изменившего статус задачи.
@@ -243,6 +245,7 @@ SELECT autoservice.pricesupd('
 ```sql
 SELECT autoservice.employeetasksupd('
 {
+    "vehicle_id": 1,
     "repair_status": "In Progress",
     "responsible_employee_id": 123
 }', 456);
@@ -260,6 +263,7 @@ SELECT autoservice.employeetasksupd('
 SELECT autoservice.employeetasksupd('
 {
     "employee_task_id": 1,
+    "vehicle_id": 1,
     "repair_status": "Completed",
     "responsible_employee_id": 456
 }', 789);
@@ -324,3 +328,132 @@ SELECT autoservice.stockupd('
 {"data" : null}
 ```
 
+## Функция `autoservice_getbydetailid`
+
+Функция `autoservice_getbydetailid` предназначена для получения информации о детали по её идентификатору.
+
+### Параметры функции
+
+- `_detail_id` (тип: BIGINT) - Уникальный идентификатор детали.
+
+### Пример использования функции
+
+```sql
+SELECT autoservice.autoservice_getbydetailid(1);
+```
+
+Пример ответа при правильном выполнении:
+
+```jsonb
+{
+  "data": [
+    {
+      "detail_id": 1,
+      "detail_name": "Название детали",
+      "brand_id": 1,
+      "model": "Модель",
+      "stock_id": 5,
+      "quantity": 10
+    }
+  ]
+}
+```
+
+## Функция `autoservice_getbyorderid`
+
+Функция `autoservice_getbyorderid` предназначена для получения информации о заказе по его идентификатору.
+
+### Параметры функции
+
+- `_order_id` (тип: BIGINT) - Уникальный идентификатор заказа.
+
+### Пример использования функции
+
+```sql
+SELECT autoservice.autoservice_getbyorderid(54321);
+```
+
+Пример ответа при правильном выполнении:
+
+```jsonb
+{
+  "data": [
+    {
+      "order_id": 54321,
+      "order_date": "2023-01-15T14:30:00Z",
+      "service_id": 1,
+      "service_name": "Замена масла",
+      "vehicle_id": 987,
+      "name": "Иван Иванов",
+      "phone": "1234567890",
+      "vin": "ABCD1234",
+      "status": "Выполнен",
+      "appointment": "2023-01-20T10:00:00Z",
+      "problem": "Замена масла и фильтра"
+    }
+  ]
+}
+```
+
+## Функция `autoservice_getbyrespemployeeid`
+
+Функция `autoservice_getbyrespemployeeid` предназначена для получения информации о задачах, назначенных на ответственного сотрудника по его идентификатору.
+
+### Параметры функции
+
+- `_responsible_employee_id` (тип: BIGINT) - Уникальный идентификатор ответственного сотрудника.
+
+### Пример использования функции
+
+```sql
+SELECT autoservice.autoservice_getbyrespemployeeid(12345);
+```
+
+Пример ответа при правильном выполнении:
+
+```jsonb
+{
+  "data": [
+    {
+      "employee_task_id": 1,
+      "vehicle_id": 987,
+      "repair_status": "В работе",
+      "responsible_employee_id": 12345,
+      "name": "Иван Иванов",
+      "phone": "1234567890"
+    }
+  ]
+}
+```
+
+## Функция `autoservice_getbyserviceid`
+
+Функция `autoservice_getbyserviceid` предназначена для получения информации о сервисе по его идентификатору.
+
+### Параметры функции
+
+- `_service_id` (тип: INT) - Уникальный идентификатор сервиса.
+
+### Пример использования функции
+
+```sql
+SELECT autoservice.autoservice_getbyserviceid(54321);
+```
+
+Пример ответа при правильном выполнении:
+
+```jsonb
+{
+  "data": [
+    {
+      "service_id": 54321,
+      "service_name": "Замена масла",
+      "price": 50.00,
+      "work_time": 1.5,
+      "type_car_id": 1,
+      "detail_id": 12345,
+      "detail_name": "Масляный фильтр"
+    }
+  ]
+}
+```

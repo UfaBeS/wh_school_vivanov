@@ -80,7 +80,7 @@
 Для получения информации о сотруднике по его номеру телефона, выполните следующий запрос:
 
 ```sql
-SELECT * FROM humanresource.humanresource_getbyphone('9876543210');
+SELECT * FROM humanresource.humanresource_getbyphone('1234567890');
 ```
 
 Пример ответа при правильном выполнении:
@@ -89,15 +89,16 @@ SELECT * FROM humanresource.humanresource_getbyphone('9876543210');
 {
   "data": [
     {
-      "Айди_сотрудника": 1,
-      "Имя": "Иван Иванов",
-      "Номер": "9876543210",
-      "Дата_рождения": "1990-05-15",
-      "Специализация": "Механик",
-      "Услуги": "Замена масла",
-      "Опыт": "Junior",
-      "Очередь": 3
+      "employee_id": 1,
+      "name": "Иван Иванов",
+      "phone": "1234567890",
+      "birth_date": "1990-01-15",
+      "specialization_name": "Механик",
+      "service_name": "Ремонт двигателя",
+      "skill_lvl": 2,
+      "max_queue": 3
     }
   ]
 }
+
 ```

@@ -5,11 +5,11 @@ AS
 $$
 BEGIN
     RETURN jsonb_build_object('data', jsonb_agg(row_to_json(res)))
-        FROM (SELECT s.specialization_id   AS Айди_специализации,
-                     s.specialization_name AS Название_специализации,
-                     s.service_id          AS Айди_услуги,
-                     s.skill_lvl           AS Уровень_навыка,
-                     s.max_queue           AS Макс_очередь
+        FROM (SELECT s.specialization_id,
+                     s.specialization_name,
+                     s.service_id,
+                     s.skill_lvl,
+                     s.max_queue
               FROM dictionary.specialization s
               WHERE s.specialization_id = _specialization_id) res;
 END

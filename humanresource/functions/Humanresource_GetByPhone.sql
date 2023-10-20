@@ -5,14 +5,14 @@ AS
 $$
 BEGIN
     RETURN jsonb_build_object('data', jsonb_agg(row_to_json(res)))
-        FROM (SELECT e.employee_id         AS Айди_сотрудника,
-                     e.name                AS Имя,
-                     e.phone               AS Номер,
-                     e.birth_date          AS Дата_рождения,
-                     s.specialization_name AS Специализация,
-                     p.service_name        AS Услуги,
-                     s.skill_lvl           AS Опыт,
-                     s.max_queue           AS Очередь
+        FROM (SELECT e.employee_id,
+                     e.name,
+                     e.phone,
+                     e.birth_date,
+                     s.specialization_name,
+                     p.service_name,
+                     s.skill_lvl,
+                     s.max_queue
               FROM humanresource.employees e
                        INNER JOIN dictionary.specialization s ON e.specialization_id = s.specialization_id
                        INNER JOIN autoservice.prices p ON s.service_id = p.service_id

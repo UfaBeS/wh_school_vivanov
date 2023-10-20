@@ -13,6 +13,8 @@ BEGIN
                      e.phone
               FROM autoservice.employeetasks et
                        INNER JOIN humanresource.employees e ON et.responsible_employee_id = e.employee_id
-              WHERE et.responsible_employee_id = _responsible_employee_id) res;
+                       INNER JOIN autoservice.orders o on et.vehicle_id = o.vehicle_id
+              WHERE et.responsible_employee_id = _responsible_employee_id
+                AND o.is_actual = true) res;
 END
 $$;

@@ -21,7 +21,7 @@ BEGIN
            s.ch_employee_id,
            s.ch_dt
     FROM jsonb_to_recordset(_src) AS s (employee_id BIGINT,
-                                        phone VARCHAR(11),
+                                        phone VARCHAR(12),
                                         name VARCHAR(64),
                                         birth_date DATE,
                                         specialization_id INT,
@@ -39,5 +39,46 @@ BEGIN
     WHERE e.ch_dt < excluded.ch_dt;
 
     RETURN JSONB_BUILD_OBJECT('data', NULL);
+END
+$$;
+
+CREATE OR REPLACE FUNCTION whsync.clientcard_import(_src jsonb) RETURNS jsonb
+    LANGUAGE plpgsql
+    SECURITY DEFINER
+AS
+$$
+BEGIN
+    WITH cte AS (SELECT j.card_id,
+                        j.client_id,
+                        j.is_deleted,
+                        j.dt,
+                        j.employee_id,
+                        ROW_NUMBER() OVER (PARTITION BY j.card_id ORDER BY j.dt DESC) rn
+                 FROM jsonb_to_recordset(_src) AS j (card_id INT,
+                                                     client_id INT,
+                                                     is_deleted BOOLEAN,
+                                                     dt TIMESTAMPTZ,
+                                                     employee_id INT))
+
+    INSERT INTO shop.clientcard AS cc (card_id,
+                                       client_id,
+                                       is_deleted,
+                                       dt,
+                                       employee_id)
+    SELECT c.card_id,
+           c.client_id,
+           c.is_deleted,
+           c.dt,
+           c.employee_id
+    FROM cte c
+    WHERE c.rn = 1
+    ON CONFLICT (card_id) DO UPDATE
+        SET client_id   = excluded.client_id,
+            is_deleted  = excluded.is_deleted,
+            dt          = excluded.dt,
+            employee_id = excluded.employee_id
+    WHERE cc.dt <= excluded.dt; --если проливка данных
+
+    RETURN jsonb_build_object('data', NULL);
 END
 $$;

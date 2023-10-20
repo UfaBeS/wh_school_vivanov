@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS history.customerschanges
 (
-    log_id         BIGSERIAL   NOT NULL
-        CONSTRAINT pk_customerschanges PRIMARY KEY,
+    log_id         BIGSERIAL   NOT NULL,
     customer_id    BIGINT      NOT NULL,
     name           VARCHAR(50) NOT NULL,
     phone          VARCHAR(15),

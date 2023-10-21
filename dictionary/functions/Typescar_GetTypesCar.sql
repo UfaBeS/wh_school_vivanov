@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION dictionary.dictionary_gettypescar() RETURNS jsonb
+CREATE OR REPLACE FUNCTION dictionary.typescar_gettypescar() RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS

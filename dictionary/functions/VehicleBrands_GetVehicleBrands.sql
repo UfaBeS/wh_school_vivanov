@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION dictionary.dictionary_getvehiclebrands() RETURNS jsonb
+CREATE OR REPLACE FUNCTION dictionary.vehiclebrands_getvehiclebrands() RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS

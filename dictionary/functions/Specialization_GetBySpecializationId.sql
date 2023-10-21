@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION dictionary.dictionary_getbyspecializationid(_specialization_id INT) RETURNS jsonb
+CREATE OR REPLACE FUNCTION dictionary.specialization_getbyspecializationid(_specialization_id INT) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION autoservice.autoservice_getbyorderid(_order_id BIGINT) RETURNS jsonb
+CREATE OR REPLACE FUNCTION autoservice.orders_getbyorderid(_order_id BIGINT) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS

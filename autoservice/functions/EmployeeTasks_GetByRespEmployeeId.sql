@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION autoservice.autoservice_getbyrespemployeeid(_responsible_employee_id BIGINT) RETURNS jsonb
+CREATE OR REPLACE FUNCTION autoservice.employeetasks_getbyrespemployeeid(_responsible_employee_id BIGINT) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS

@@ -207,9 +207,9 @@ SELECT dictionary.servicedetailsupd('
 {"data" : null}
 ```
 
-## Функция `dictionary_getbyserviceid`
+## Функция `servicedetail_getbyserviceid`
 
-Функция `dictionary_getbyserviceid` предназначена для получения информации о сервисе по его уникальному идентификатору (`service_id`).
+Функция предназначена для получения информации о сервисе по его уникальному идентификатору (`service_id`).
 
 ### Параметры функции
 
@@ -218,7 +218,7 @@ SELECT dictionary.servicedetailsupd('
 ### Пример использования функции
 
 ```sql
-SELECT dictionary.dictionary_getbyserviceid(1);
+SELECT dictionary.servicedetail_getbyserviceid(1);
 ```
 
 Пример ответа при правильном выполнении:
@@ -236,9 +236,9 @@ SELECT dictionary.dictionary_getbyserviceid(1);
 }
 ```
 
-## Функция `dictionary_getbyspecializationid`
+## Функция `specialization_getbyspecializationid`
 
-Функция `dictionary_getbyspecializationid` предназначена для получения информации о специализации по ее уникальному идентификатору (`specialization_id`).
+Функция предназначена для получения информации о специализации по ее уникальному идентификатору (`specialization_id`).
 
 ### Параметры функции
 
@@ -247,7 +247,7 @@ SELECT dictionary.dictionary_getbyserviceid(1);
 ### Пример использования функции
 
 ```sql
-SELECT dictionary.dictionary_getbyspecializationid(1);
+SELECT dictionary.specialization_getbyspecializationid(1);
 ```
 
 Пример ответа при правильном выполнении:
@@ -266,9 +266,9 @@ SELECT dictionary.dictionary_getbyspecializationid(1);
 }
 ```
 
-## Функция `dictionary_gettypescar`
+## Функция `typescar_gettypescar`
 
-Функция `dictionary_gettypescar` предназначена для получения информации о типах автомобилей (моделях).
+Функция предназначена для получения информации о типах автомобилей (моделях).
 
 ### Параметры функции
 
@@ -277,7 +277,7 @@ SELECT dictionary.dictionary_getbyspecializationid(1);
 ### Пример использования функции
 
 ```sql
-SELECT dictionary.dictionary_gettypescar();
+SELECT dictionary.typescar_gettypescar();
 ```
 
 Пример ответа при правильном выполнении:
@@ -301,9 +301,9 @@ SELECT dictionary.dictionary_gettypescar();
 }
 ```
 
-## Функция `dictionary_getvehiclebrands`
+## Функция `vehiclebrand_getvehiclebrands`
 
-Функция `dictionary_getvehiclebrands` предназначена для получения информации о брендах автомобилей.
+Функция предназначена для получения информации о брендах автомобилей.
 
 ### Параметры функции
 
@@ -312,7 +312,7 @@ SELECT dictionary.dictionary_gettypescar();
 ### Пример использования функции
 
 ```sql
-SELECT dictionary.dictionary_getvehiclebrands();
+SELECT dictionary.vehiclebrand_getvehiclebrands();
 ```
 
 Пример ответа при правильном выполнении:

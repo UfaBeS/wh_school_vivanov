@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION humanresource.humanresource_getbyphone(_phone VARCHAR(12)) RETURNS jsonb
+CREATE OR REPLACE FUNCTION humanresource.employees_getbyphone(_phone VARCHAR(12)) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS

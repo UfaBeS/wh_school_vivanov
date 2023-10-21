@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION autoservice.autoservice_getpricebycustomerid(_customer_id INT) RETURNS jsonb
+CREATE OR REPLACE FUNCTION autoservice.customers_getpricebycustomerid(_customer_id INT) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS

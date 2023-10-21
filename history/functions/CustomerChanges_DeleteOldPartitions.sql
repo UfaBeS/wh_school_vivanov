@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION history.deleteoldpartitions() RETURNS void
+CREATE OR REPLACE FUNCTION history.customerchanges_deleteoldpartitions() RETURNS void
     LANGUAGE plpgsql AS
 $$
 DECLARE

@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION customer.customer_getbyphone(_phone VARCHAR(12)) RETURNS jsonb
-    LANGUAGE plpgsql
-    SECURITY DEFINER
+CREATE OR REPLACE FUNCTION customer.customer_getbyphone(_phone VARCHAR(12) DEFAULT NULL) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
 AS
 $$
 BEGIN
@@ -12,6 +12,6 @@ BEGIN
                      v.vin
               FROM customer.customers c
                        INNER JOIN customer.vehicles v on c.vehicle_id = v.vehicle_id
-              WHERE c.phone = _phone) res;
+              WHERE c.phone = COALESCE(_phone, c.phone)) res;
 END
 $$;

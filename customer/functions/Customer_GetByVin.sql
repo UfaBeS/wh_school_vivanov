@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION customer.customer_getbyvin(_vin VARCHAR(17)) RETURNS jsonb
+CREATE OR REPLACE FUNCTION customer.customer_getbyvin(_vin VARCHAR(17) DEFAULT NULL) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS
@@ -14,9 +14,9 @@ BEGIN
                      vb.country,
                      tc.name_type
               FROM customer.vehicles v
-                       LEFT JOIN customer.customers c on c.vehicle_id = v.vehicle_id
+                       LEFT JOIN customer.customers c ON c.vehicle_id = v.vehicle_id
                        INNER JOIN dictionary.vehiclebrands vb ON v.brand_id = vb.brand_id
                        INNER JOIN dictionary.typescar tc ON v.type_car_id = tc.type_car_id
-              WHERE v.vin = _vin) res;
+              WHERE (_vin IS NULL OR v.vin = _vin)) res;
 END
 $$;

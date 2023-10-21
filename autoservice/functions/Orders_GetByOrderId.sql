@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION autoservice.orders_getbyorderid(_order_id BIGINT) RETURNS jsonb
+CREATE OR REPLACE FUNCTION autoservice.orders_getbyorderid(_order_id BIGINT DEFAULT NULL) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS
@@ -21,6 +21,6 @@ BEGIN
                        INNER JOIN autoservice.prices p ON o.service_id = p.service_id
                        INNER JOIN customer.vehicles v ON o.vehicle_id = v.vehicle_id
                        INNER JOIN customer.customers c ON v.vehicle_id = c.vehicle_id
-              WHERE o.order_id = _order_id) res;
+              WHERE (_order_id IS NULL OR o.order_id = _order_id)) res;
 END
 $$;

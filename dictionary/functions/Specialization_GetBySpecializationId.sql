@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION dictionary.specialization_getbyspecializationid(_specialization_id INT) RETURNS jsonb
+CREATE OR REPLACE FUNCTION dictionary.specialization_getbyspecializationid(_specialization_id INT DEFAULT NULL) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS
@@ -11,6 +11,6 @@ BEGIN
                      s.skill_lvl,
                      s.max_queue
               FROM dictionary.specialization s
-              WHERE s.specialization_id = _specialization_id) res;
+              WHERE (_specialization_id IS NULL OR s.specialization_id = _specialization_id)) res;
 END
 $$;

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION autoservice.autoservice_getbyrespemployeeid(_responsible_employee_id BIGINT) RETURNS jsonb
+CREATE OR REPLACE FUNCTION autoservice.employeetasks_getbyrespemployeeid(_responsible_employee_id BIGINT DEFAULT NULL) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS
@@ -13,6 +13,8 @@ BEGIN
                      e.phone
               FROM autoservice.employeetasks et
                        INNER JOIN humanresource.employees e ON et.responsible_employee_id = e.employee_id
-              WHERE et.responsible_employee_id = _responsible_employee_id) res;
+                       INNER JOIN autoservice.orders o on et.vehicle_id = o.vehicle_id
+              WHERE (_responsible_employee_id IS NULL OR et.responsible_employee_id = _responsible_employee_id)
+                AND o.is_actual = true) res;
 END
 $$;

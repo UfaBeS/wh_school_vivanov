@@ -32,9 +32,9 @@ BEGIN
                FROM autoservice.orders o
                         INNER JOIN autoservice.prices p on o.service_id = p.service_id
                WHERE _appointment BETWEEN (o.appointment) AND
-                   (o.appointment + INTERVAL '1 hour' * p.work_time)
+                   (o.appointment + INTERVAL '' || p.work_time || ' hour')
                   OR _appointment BETWEEN (o.appointment) AND
-                         (o.appointment - INTERVAL '1 hour' * p.work_time)
+                         (o.appointment - INTERVAL '' || p.work_time || ' hour')
                    AND o.is_actual = TRUE
                    AND o.status != 'rdy')
     THEN

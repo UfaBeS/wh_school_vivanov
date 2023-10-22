@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION autoservice.autoservice_getbydetailid(_detail_id BIGINT) RETURNS jsonb
+CREATE OR REPLACE FUNCTION autoservice.detail_getbydetailid(_detail_id BIGINT) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS

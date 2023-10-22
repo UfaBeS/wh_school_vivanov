@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION humanresource.humanresource_getbyphone(_phone VARCHAR(12)) RETURNS jsonb
+CREATE OR REPLACE FUNCTION humanresource.employees_getbyphone(_phone VARCHAR(11) DEFAULT NULL) RETURNS jsonb
     LANGUAGE plpgsql
     SECURITY DEFINER
 AS
@@ -16,7 +16,7 @@ BEGIN
               FROM humanresource.employees e
                        INNER JOIN dictionary.specialization s ON e.specialization_id = s.specialization_id
                        INNER JOIN autoservice.prices p ON s.service_id = p.service_id
-              WHERE e.phone = _phone
+              WHERE (_phone IS NULL OR e.phone = _phone)
                 AND is_active = true) res;
 END
 $$;

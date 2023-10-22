@@ -328,9 +328,9 @@ SELECT autoservice.stockupd('
 {"data" : null}
 ```
 
-## Функция `autoservice_getbydetailid`
+## Функция `detail_getbydetailid`
 
-Функция `autoservice_getbydetailid` предназначена для получения информации о детали по её идентификатору.
+Функция предназначена для получения информации о детали по её идентификатору.
 
 ### Параметры функции
 
@@ -339,7 +339,7 @@ SELECT autoservice.stockupd('
 ### Пример использования функции
 
 ```sql
-SELECT autoservice.autoservice_getbydetailid(1);
+SELECT autoservice.detail_getbydetailid(1);
 ```
 
 Пример ответа при правильном выполнении:
@@ -359,9 +359,9 @@ SELECT autoservice.autoservice_getbydetailid(1);
 }
 ```
 
-## Функция `autoservice_getbyorderid`
+## Функция `orders_getbyorderid`
 
-Функция `autoservice_getbyorderid` предназначена для получения информации о заказе по его идентификатору.
+Функция предназначена для получения информации о заказе по его идентификатору.
 
 ### Параметры функции
 
@@ -370,7 +370,7 @@ SELECT autoservice.autoservice_getbydetailid(1);
 ### Пример использования функции
 
 ```sql
-SELECT autoservice.autoservice_getbyorderid(54321);
+SELECT autoservice.orders_getbyorderid(54321);
 ```
 
 Пример ответа при правильном выполнении:
@@ -395,9 +395,9 @@ SELECT autoservice.autoservice_getbyorderid(54321);
 }
 ```
 
-## Функция `autoservice_getbyrespemployeeid`
+## Функция `employeetasks_getbyrespemployeeid`
 
-Функция `autoservice_getbyrespemployeeid` предназначена для получения информации о задачах, назначенных на ответственного сотрудника по его идентификатору.
+Функция предназначена для получения информации о задачах, назначенных на ответственного сотрудника по его идентификатору.
 
 ### Параметры функции
 
@@ -406,7 +406,7 @@ SELECT autoservice.autoservice_getbyorderid(54321);
 ### Пример использования функции
 
 ```sql
-SELECT autoservice.autoservice_getbyrespemployeeid(12345);
+SELECT autoservice.employeetasks_getbyrespemployeeid(12345);
 ```
 
 Пример ответа при правильном выполнении:
@@ -426,9 +426,9 @@ SELECT autoservice.autoservice_getbyrespemployeeid(12345);
 }
 ```
 
-## Функция `autoservice_getbyserviceid`
+## Функция `prices_getbyserviceid`
 
-Функция `autoservice_getbyserviceid` предназначена для получения информации о сервисе по его идентификатору.
+Функция предназначена для получения информации о сервисе по его идентификатору.
 
 ### Параметры функции
 
@@ -437,7 +437,7 @@ SELECT autoservice.autoservice_getbyrespemployeeid(12345);
 ### Пример использования функции
 
 ```sql
-SELECT autoservice.autoservice_getbyserviceid(54321);
+SELECT autoservice.prices_getbyserviceid(54321);
 ```
 
 Пример ответа при правильном выполнении:

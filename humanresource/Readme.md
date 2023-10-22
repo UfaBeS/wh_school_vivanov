@@ -1,4 +1,4 @@
-Вот MD файл для схемы "humanresource":
+
 # Схема `humanresource`
 
 ## Таблица `employees`
@@ -67,7 +67,7 @@
    ```jsonb
    {"data": null}
    ```
-# Функция `employees_getbyphonee`
+# Функция `employees_getbyphone`
 
 Функция предназначена для получения информации о сотруднике на основе его номера телефона.
 

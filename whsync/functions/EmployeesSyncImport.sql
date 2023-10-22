@@ -14,7 +14,7 @@ BEGIN
                         s.ch_dt,
                         ROW_NUMBER() OVER (PARTITION BY s.employee_id ORDER BY s.ch_dt DESC) rn
                  FROM jsonb_to_recordset(_src) AS s (employee_id BIGINT,
-                                                     phone VARCHAR(12),
+                                                     phone VARCHAR(11),
                                                      name VARCHAR(64),
                                                      birth_date DATE,
                                                      specialization_id INT,

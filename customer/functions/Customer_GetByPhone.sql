@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION customer.customer_getbyphone(_phone VARCHAR(12) DEFAULT NULL) RETURNS jsonb
+CREATE OR REPLACE FUNCTION customer.customer_getbyphone(_phone VARCHAR(11) DEFAULT NULL) RETURNS jsonb
 LANGUAGE plpgsql
 SECURITY DEFINER
 AS

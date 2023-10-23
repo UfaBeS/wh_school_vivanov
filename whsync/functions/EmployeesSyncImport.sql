@@ -22,14 +22,15 @@ BEGIN
                                                      ch_employee_id INT,
                                                      ch_dt TIMESTAMPTZ))
 
-    INSERT INTO humanresource.employees AS e (employee_id,
-                                               phone,
-                                               name,
-                                               birth_date,
-                                               specialization_id,
-                                               is_active,
-                                               ch_employee_id,
-                                               ch_dt)
+    INSERT
+    INTO humanresource.employees AS e (employee_id,
+                                       phone,
+                                       name,
+                                       birth_date,
+                                       specialization_id,
+                                       is_active,
+                                       ch_employee_id,
+                                       ch_dt)
     SELECT c.employee_id,
            c.phone,
            c.name,

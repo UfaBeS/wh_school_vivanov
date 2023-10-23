@@ -17,7 +17,7 @@ BEGIN
          FROM get_partexp
          WHERE substring(partition_expression FROM 'TO \(''(.*?)''\)')::TIMESTAMPTZ < NOW() - INTERVAL '90 days')
     LOOP
-        RAISE NOTICE 'Выполняем: DROP TABLE IF EXISTS history.customerschanges_%', _old_partition_name;
+        RAISE NOTICE 'Выполняем: DROP TABLE IF EXISTS history.%', _table_name || '_' || _old_partition_name;
         EXECUTE 'DROP TABLE IF EXISTS history.' || _old_partition_name;
     END LOOP;
 END;

@@ -50,13 +50,30 @@ BEGIN
             is_active         = excluded.is_active;
 
     INSERT INTO history.employeeschanges (employee_id,
-                                         phone,
-                                         name,
-                                         birth_date,
-                                         specialization_id,
-                                         is_active,
-                                         ch_employee_id,
-                                         ch_dt)
+                                          phone,
+                                          name,
+                                          birth_date,
+                                          specialization_id,
+                                          is_active,
+                                          ch_employee_id,
+                                          ch_dt)
+    SELECT _employee_id,
+           _phone,
+           _name,
+           _birth_date,
+           _specialization_id,
+           _is_active,
+           _ch_employee_id,
+           _ch_dt;
+
+    INSERT INTO whsync.employeessync (employee_id,
+                                      phone,
+                                      name,
+                                      birth_date,
+                                      specialization_id,
+                                      is_active,
+                                      ch_employee_id,
+                                      ch_dt)
     SELECT _employee_id,
            _phone,
            _name,
